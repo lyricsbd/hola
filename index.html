@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+</HEAD>
+<BODY topmargin=0 leftmargin=0 style="background:transparent;">
+
+  <div style="position:relative;">
+   
+    <div id='vplayer' style="width:100%;height:100%;text-align:center;">
+                  
+                <video id="spark"
+        class="video-js vjs-default-skin"
+        width="640" height="360"
+        controls="true"
+        preload="auto"
+        poster="https://fsb.thevideobee.to/i/01/00085/5wp5y7i0ufeu.jpg">
+        <track kind="captions" src="https://thevideobee.to/srt/empty.srt" srclang="en" label="Upload SRT" id="x182">
+    </video></div>
+
+<link  href="/videojs-chromecast.css" rel="stylesheet">
+
+<script src="/hola_player.js"></script>
+<script src="/videojs.hotkeys.min.js"></script>
+<script src="/videojs-chromecast.js"></script>
+<script src="/videojs-contrib-hls.min.js"></script>
+<script>
+window.hola_player({
+    swf: "https://cdnjs.cloudflare.com/ajax/libs/hola_player/1.0.165/videojs.swf",
+    osmf_swf: "https://cdnjs.cloudflare.com/ajax/libs/hola_player/1.0.165/videojs-osmf.swf",
+    player: '#spark',
+    share: false,
+    sources: [{src: "https://fsb.thevideobee.to/hls/exfpaouk7gfr4navd4lklzhnsmrociqjizfhfno4f,lf4b3swmhuyvuzgceoa,bl4d3swmhusz746ncqa,.urlset/master.m3u8", type: "application/x-mpegURL"}],
+    preload: 'auto',
+    videojs_options: { 
+  html5: {
+   hlsjsConfig: {
+    debug: false, 
+    maxBufferLength: 30, 
+    maxBufferSize: 20*1024*1024, 
+    maxMaxBufferLength: 600, 
+    capLevelToPlayerSize: true 
+   }
+  },
+  chromecast:{
+   appId:'APP-ID'
+  }
+ },
+ 
+}, function(player){
+ player.hotkeys({
+  volumeStep: 0.1,
+  seekStep: 5,
+  enableModifiersForNumbers: false
+ });
+    var vvplay,vvad;
+
+player.on('play', function(){ doPlay(); });
+player.on('ended', function(){ $('div.video_ad').show();  });
+player.on('timeupdate',function() { 
+});
+
+    
+    player.ready(function(){
+        $('li.vjs-captions-menu-item:last').click(function() {alert($(this).text())});
+   //const trackEl = player.addRemoteTextTrack({src: 'https://thevideobee.to/srt/empty.srt', label: 'Upload SRT', id: '182'}, false);
+   //player.textTracks()[2].on('selected', function(x) {var tt = player.textTracks();alert('t:'+tt[tt.length-1].src+tt[tt.length-1].mode);} );
+  //trackEl.addEventListener('loaded', function() {alert('12');} );
+
+    });
+});
+
+</script>
+
+<style>
+.video-js {
+ width:100%;
+ height:100%;
+}
+.vjs-texttrack-settings {
+  display: none;
+}
+</style>
+
+
+  </div>
+
+
+</BODY></HTML>
